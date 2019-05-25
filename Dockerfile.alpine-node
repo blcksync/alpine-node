@@ -1,8 +1,8 @@
 # https://hub.docker.com/_/alpine/
-FROM alpine:3.8
+FROM alpine:3.9
 
-ENV NODEJS_VERSION=8.11.3 \
-    NODEJS_SHA256=0d7e795c0579226c8b197353bbb9392cae802f4fefa4787a2c0e678beaf85cce \
+ENV NODEJS_VERSION=8.16.0 \
+    NODEJS_SHA256=a1a885add3e511177f05676f0834df710886b68cb559b893169f8674a23adfcf \
     NPM_VERSION=5.6.0
 
 # latest node source code https://nodejs.org/en/download/
