@@ -11,7 +11,8 @@ RUN apk add --no-cache \
 		bash ca-certificates \
     && [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
-ENV GOLANG_VERSION 1.10.3
+ENV GOLANG_VERSION 1.10.8
+ENV GOLANG_VERSION_SHA256 6faf74046b5e24c2c0b46e78571cca4d65e1b89819da1089e53ea57539c63491
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
@@ -35,7 +36,7 @@ RUN set -eux; \
 	esac; \
 	\
 	wget -O go.tgz "https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz"; \
-	echo '567b1cc66c9704d1c019c50bef946272e911ec6baf244310f87f4e678be155f2 *go.tgz' | sha256sum -c -; \
+	echo "$GOLANG_VERSION_SHA256 *go.tgz" | sha256sum -c -; \
 	tar -C /usr/local -xzf go.tgz; \
 	rm go.tgz; \
 	\

@@ -6,12 +6,13 @@ LABEL maintainer="matr1xc0in"
 
 USER root
 
-# Reference: https://github.com/docker-library/golang/blob/master/1.11/alpine3.8/Dockerfile
+# Reference: https://github.com/docker-library/golang/blob/master/1.11/alpine3.9/Dockerfile
 RUN apk add --no-cache \
 		bash ca-certificates \
     && [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
-ENV GOLANG_VERSION 1.11.2
+ENV GOLANG_VERSION 1.11.10
+ENV GOLANG_VERSION_SHA256 df27e96a9d1d362c46ecd975f1faa56b8c300f5c529074e9ea79bdd885493c1b
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
@@ -35,7 +36,7 @@ RUN set -eux; \
 	esac; \
 	\
 	wget -O go.tgz "https://golang.org/dl/go$GOLANG_VERSION.src.tar.gz"; \
-	echo '042fba357210816160341f1002440550e952eb12678f7c9e7e9d389437942550 *go.tgz' | sha256sum -c -; \
+	echo "$GOLANG_VERSION_SHA256 *go.tgz" | sha256sum -c -; \
 	tar -C /usr/local -xzf go.tgz; \
 	rm go.tgz; \
 	\
