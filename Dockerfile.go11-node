@@ -11,8 +11,8 @@ RUN apk add --no-cache \
 		bash ca-certificates \
     && [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
-ENV GOLANG_VERSION 1.11.10
-ENV GOLANG_VERSION_SHA256 df27e96a9d1d362c46ecd975f1faa56b8c300f5c529074e9ea79bdd885493c1b
+ENV GOLANG_VERSION 1.11.13
+ENV GOLANG_VERSION_SHA256 5032095fd3f641cafcce164f551e5ae873785ce7b07ca7c143aecd18f7ba4076
 
 RUN set -eux; \
 	apk add --no-cache --virtual .build-deps \
