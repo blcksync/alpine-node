@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Default we use latest go-lang version
-GO_VER=${GO_VER:-"11"}
+GO_VER=${GO_VER:-"13"}
 ALPINE_IMAGE=${ALPINE_IMAGE:-"blcksync/alpine-node:latest"}
 
 # alpine-node is shared which includes npm. It should be agnostic
@@ -23,5 +23,12 @@ elif [ "$GO_VER" = "11" ] ; then
     --build-arg ALPINE_IMAGE="$ALPINE_IMAGE" \
     --file Dockerfile.go${GO_VER}-node \
     .
-
+elif [ "$GO_VER" = "13" ] ; then
+  echo "ok - building Go 1.13.x"
+  docker build \
+    --rm \
+    -t blcksync/go${GO_VER}-node \
+    --build-arg ALPINE_IMAGE="$ALPINE_IMAGE" \
+    --file Dockerfile.go${GO_VER}-node \
+    .
 fi
