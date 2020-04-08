@@ -1,9 +1,9 @@
 # https://hub.docker.com/_/alpine/
-FROM alpine:3.9
+FROM alpine:3.10
 
-ENV NODEJS_VERSION=12.16.1 \
-    NODEJS_SHA256=4fe8c3454f9bee5bbe72d44aa25cd931859b3037b7a9473081b3b2bd1b465b95 \
-    NPM_VERSION=6.11.3
+ENV NODEJS_VERSION=10.19.0 \
+    NODEJS_SHA256=db85b9992f1ec66629731d82f690987883dd2989abb4cc136eb65dd720b1bda8 \
+    NPM_VERSION=6.14.4
 
 # latest node source code https://nodejs.org/en/download/
 
