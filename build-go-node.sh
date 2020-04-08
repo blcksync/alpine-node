@@ -7,28 +7,16 @@ ALPINE_IMAGE=${ALPINE_IMAGE:-"blcksync/alpine-node:310"}
 # alpine-node is shared which includes npm. It should be agnostic
 # to go-lang version.
 
-if [ "$GO_VER" = "10" ] ; then
-  echo "ok - building Go 1.10.x"
-  docker build \
-    --rm \
-    -t blcksync/go-nodee:${GO_VER} \
-    --build-arg ALPINE_IMAGE="$ALPINE_IMAGE" \
-    --file Dockerfile.go${GO_VER}-node \
-    .
-elif [ "$GO_VER" = "11" ] ; then
-  echo "ok - building Go 1.11.x"
+if [ -d go${GO_VER} ] ; then
+  echo "ok - building Go 1.$GO_VER.x"
   docker build \
     --rm \
     -t blcksync/go-node:${GO_VER} \
     --build-arg ALPINE_IMAGE="$ALPINE_IMAGE" \
-    --file Dockerfile.go${GO_VER}-node \
+    --file go${GO_VER}/Dockerfile.go${GO_VER}-node \
     .
-elif [ "$GO_VER" = "13" ] ; then
-  echo "ok - building Go 1.13.x"
-  docker build \
-    --rm \
-    -t blcksync/go-node:${GO_VER} \
-    --build-arg ALPINE_IMAGE="$ALPINE_IMAGE" \
-    --file Dockerfile.go${GO_VER}-node \
-    .
+  exit $?
+else
+  echo "fail - go version $GO_VER dir and Dockerfile missing or not supported!"
+  exit -1
 fi
