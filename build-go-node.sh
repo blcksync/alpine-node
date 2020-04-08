@@ -13,7 +13,7 @@ if [ -d go${GO_VER} ] ; then
     --rm \
     -t blcksync/go-node:${GO_VER} \
     --build-arg ALPINE_IMAGE="$ALPINE_IMAGE" \
-    --file go${GO_VER}/Dockerfile.go${GO_VER}-node \
+    --file go${GO_VER}/Dockerfile.go-node \
     .
   exit $?
 else
